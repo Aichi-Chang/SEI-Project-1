@@ -55,6 +55,29 @@
   }
 }
 
+@keyframes startButton {
+  0%
+  {
+    background-image: linear-gradient(to right, pink, rgb(120, 136, 206));
+  }
+  30% 
+  {
+    background-image: linear-gradient(to right, rgb(194, 85, 176), rgb(161, 179, 226));
+  }
+  50% 
+  {
+    background-image: linear-gradient(to right, rgb(71, 137, 175), rgb(203, 147, 211));
+  }
+  80% 
+  {
+    background-image: linear-gradient(to right, rgb(136, 96, 202), rgb(239, 173, 241));
+  }
+  0%
+  {
+    background-image: linear-gradient(to right, pink, rgb(120, 136, 206));
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -96,6 +119,13 @@ body {
   background-repeat: no-repeat;
   background-size: 815px;
   background-position: -194px -15px;
+}
+
+.grid div.twoAlien {
+  background-image: url(../asset/115283.png);
+  background-repeat: no-repeat;
+  background-size: 815px;
+  background-position: -138px -15px;
 }
 
 .grid div.player {
@@ -188,25 +218,41 @@ section {
 }
 
 .titleSequence {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* width: 800px; */
-  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 200px;
+  left: 30px;
+  /* max-width: 800px;  */
+  text-align: center;
   font-family: 'Press Start 2P', cursive; 
   color: #677967;
   font-size: 150px;
   font-weight: 700;
   letter-spacing: 10px;
-  text-align: center;
   animation: blinking 1.5s infinite linear;
   text-shadow: none;
+}
+
+.rules {
+  color: greenyellow;
+  font-size: 25px;
+  text-align: center;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 800px; 
+  transform: translate(-50%, 50%);
+}
+
+.rules span {
+  color: palevioletred;
+  font-weight: 700;
 }
 
 
 .start {
   position: absolute;
-  bottom: 80px;
+  bottom: 100px;
   color: greenyellow;
   text-decoration: none;
   border: 1px solid #ffffff;
@@ -215,6 +261,12 @@ section {
   border-radius: 50px;
   text-align: center;
   font-size: 18px;
+  transition: background-image 1s;
+}
+
+.start:hover {
+  background-image: linear-gradient(to right, rgb(156, 212, 216), rgb(230, 93, 223));
+  animation: startButton 1s infinite linear;
 }
 
 .reset {
@@ -228,4 +280,9 @@ section {
   border-radius: 50px;
   text-align: center;
   font-size: 18px;
+}
+
+.reset:hover {
+  background-image: linear-gradient(to right, rgb(156, 212, 216), rgb(230, 93, 223));
+  animation: startButton 1s infinite linear;
 }

@@ -43,6 +43,7 @@ function main () {
   const resetTag = document.querySelector('.reset')
   const titleTag = document.querySelector('.titleSequence')
   const bodyTag = document.querySelector('body')
+  const rules = document.querySelector('.rules')
 
   const alienWave = [1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,width,-1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,width]
   
@@ -190,6 +191,7 @@ function main () {
     scoreTag.style.visibility = 'visible'
     progressBar.style.visibility = 'visible'
     titleTag.style.visibility = 'hidden'
+    rules.style.visibility = 'hidden'
     scoreTag.innerHTML = 0
     
     currentAlienPos = 0
