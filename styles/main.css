@@ -72,11 +72,30 @@
   {
     background-image: linear-gradient(to right, rgb(136, 96, 202), rgb(239, 173, 241));
   }
-  0%
+  100%
   {
     background-image: linear-gradient(to right, pink, rgb(120, 136, 206));
   }
 }
+
+@keyframes moveAlien{
+  0%
+  {
+    opacity: 0;
+  }
+  50%
+  {
+  background-image: url(../asset/115283.png);
+  background-repeat: no-repeat;
+  background-size: 815px;
+  background-position: -135px -15px;
+  }
+  100%
+  {
+    opacity: 1;
+  }
+}
+
 
 * {
   box-sizing: border-box;
@@ -115,18 +134,19 @@ body {
 }
 
 .grid div.oneAlien {
-  background-image: url(../asset/115283.png);
+  background-image: url(../asset/d9dccma-c226b152-ad6f-421b-a725-ee544fb5aacc.gif);
   background-repeat: no-repeat;
-  background-size: 815px;
-  background-position: -194px -15px;
+  background-size: 35px;
+  background-position: -5px 0;
+  /* animation: moveAlien .5s infinite; */
 }
 
-.grid div.twoAlien {
-  background-image: url(../asset/115283.png);
-  background-repeat: no-repeat;
-  background-size: 815px;
-  background-position: -138px -15px;
-}
+/* .grid div.twoAlien {
+background-image: url(../asset/115283.png);
+background-repeat: no-repeat;
+background-size: 815px;
+background-position: -194px -15px;
+} */
 
 .grid div.player {
   background-image: url(../asset/115283.png);
@@ -234,19 +254,19 @@ section {
 
 .rules {
   color: greenyellow;
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
   line-height: 1;
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: 800px; 
   transform: translate(-50%, 50%);
 }
 
 .rules span {
   color: palevioletred;
   font-weight: 700;
+  font-size: 30px;
 }
 
 
@@ -261,12 +281,13 @@ section {
   border-radius: 50px;
   text-align: center;
   font-size: 18px;
-  transition: background-image 1s;
+  transition: linear-gradient 1s;
 }
 
 .start:hover {
   background-image: linear-gradient(to right, rgb(156, 212, 216), rgb(230, 93, 223));
   animation: startButton 1s infinite linear;
+  transition: linear-gradient 1s;
 }
 
 .reset {

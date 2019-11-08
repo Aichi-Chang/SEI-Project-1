@@ -138,7 +138,8 @@ function main () {
   function moveAliens() {
 
     alienArray.forEach(alien => {
-      cells[alien].classList.remove('oneAlien') // loop through all aliens and clear the class
+      cells[alien].classList.remove('oneAlien')
+      // cells[alien].classList.add('oneAlien') // loop through all aliens and clear the class
     })
 
     alienArray = alienArray.map(alien => alien + alienWave[currentAlienPos]) // find new alien positions
@@ -147,8 +148,10 @@ function main () {
       cells[alien].classList.add('oneAlien')
     }) // add class oneAlien to alien's new position
 
+    
     currentAlienPos++ // increase the number so aliens will start to move
     // console.log(currentAlienPos)
+
 
     if (currentAlienPos === alienWave.length) {
       currentAlienPos = 0
@@ -198,8 +201,8 @@ function main () {
 
     threeLives()
     createAliens()
-    moveAliensId = setInterval(moveAliens, 300)
-    dropBombsId = setInterval(dropBombs, 600)
+    moveAliensId = setInterval(moveAliens, 500)
+    dropBombsId = setInterval(dropBombs, 500)
     addPlayer()
     moveAliens()
     dropBombs()
