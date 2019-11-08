@@ -1,1 +1,1 @@
-# project-1
+# SEI-Project-1: Space Invaders
