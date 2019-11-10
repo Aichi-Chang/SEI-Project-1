@@ -1,41 +1,10 @@
 function main () {
 
-  // Space Invaders Rules:
-
-  // The player aims to shoot an invading alien armada, 
-  // before it reaches the planet's surface using a mounted gun turret.
-
-  // The player can only move left or right. 
-
-  // The aliens also move from left to right, 
-  // and also down each time the reach the side of the screen. 
-  // The aliens also periodically drop bombs towards the player.
-
-  // Once the player has destroyed a wave of aliens, the game starts again. 
-  // The aim is to achieve the highest scoreTag possible 
-  // before either being destroyed by the aliens, 
-  // or allowing them to reach the planet's surface.
-
-  // The player should be able to clear at least one wave of aliens
-  // The player's scoreTag should be displayed at the end of the game
-
-  
-  // Pseudo Code:
-
-  // *** SET UP & RESTART *** ------------------------------------------------------------------------------------------
+  // *** SET UP *** ----------------------------------------------------------------------------------------------------
 
   const gridWidth = 20 
   const gridSize = gridWidth ** 2
   const grid = document.querySelector('.grid')
-  
-  let cells = []
-
-  let player = 390
-
-  const width = 20
-  let loselive = false
-  let playing = false
-
   const scoreTag =  document.querySelector('.score')
   const endgameScore = document.querySelector('.endgameScore')
   const startTag = document.querySelector('.start')
@@ -44,26 +13,28 @@ function main () {
   const titleTag = document.querySelector('.titleSequence')
   const bodyTag = document.querySelector('body')
   const rules = document.querySelector('.rules')
-
-  const alienWave = [1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,width,-1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,width]
+  const alienWave = [1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,gridWidth,-1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,gridWidth]
   
+  let cells = []
   let aliens = [20,21,22,23,24,25,26,27,28,29,41,42,43,44,45,46,47,48,49,50,62,63,64,65,66,67,68,69,70,71,72]
   // aliensOrigin = [20,21,22,23,24,25,26,27,28,29,41,42,43,44,45,46,47,48,49,50,62,63,64,65,66,67,68,69,70,71,72],
-  let alienArray = aliens.slice() // to use for reset, slice modifies existing array
-
+  let alienArray = aliens.slice() // for reset, slice modifies existing array
   let currentAlienPos = 0
-
+  let player = 390
+  let loselive = false
+  let playing = false
   let moveAliensId,
     dropBombsId,
     bulletId
 
-  
 
-  // let bullet
-  // let bulletId
+
+  // title sequence set up ---------------------------------------------------------------------------------------------------
+
   scoreTag.style.visibility = 'hidden'
   resetTag.style.visibility = 'hidden'
   bodyTag.style.backgroundImage = 'linear-gradient(200deg, rgba(47, 153, 146, 0.5), rgb(40, 45, 148, 0.5), rgb(146, 78, 230, 0.5))'
+
   
   // set up grids -------------------------------------------------------------------------------------------------------
 
@@ -77,18 +48,18 @@ function main () {
 
   // set up player -------------------------------------------------------------------------------------------------------
   // when game loaded, the gun turret shows up at the last line of the grid, 
-  // the player cannot move up and down, but can move to left and right
+  // the player can use case a and case d to move left and right
 
 
   function addPlayer () {
     cells[player].classList.add('player')
-  }
+  }   // set function to call out the player again when restart
 
   document.addEventListener('keydown', e => {
     if (alienArray.length === 0) {
-      return
+      return  
     } else if (barWidth < 0) {
-      return
+      return  // so player doesn't show up after winning or losing the game
     } else {
       switch (e.key) {
         case 'a': {
@@ -111,13 +82,10 @@ function main () {
           break
         } 
       }
-
       if (e.key === '/') {
         bulletCrush()
       } 
-
     }
-
   })
   
 
@@ -156,7 +124,6 @@ function main () {
     if (currentAlienPos === alienWave.length) {
       currentAlienPos = 0
     }
-    // console.log(alienArray)
   }
 
   // in EVERY MINUTE, another 3 lines of alien will follow droping down
@@ -175,9 +142,13 @@ function main () {
   
 
 
+  // *** START GAME FUNCTION *** -------------------------------------------------------------------------------------------
+  // once the player hit the start button, 
+  // 3 lines of aliens will start moving to left as a group in EVERY 0.5 SECOND by grid
+
   function startGame () {
     
-    playing = true
+    playing = true  // change this to false when game ends
 
     cells.forEach(grid => {
       grid.classList.remove('oneAlien', 'player', 'bomb', 'bullet', 'explosion', 'playerCrush')
@@ -187,7 +158,6 @@ function main () {
 
     player =  390
     cells[player].classList.add('player')
-    console.log(player)
     
     startTag.style.visibility = 'hidden'
     bodyTag.style.backgroundImage = "url('http://getwallpapers.com/wallpaper/full/b/8/f/840045-amazing-background-space-1920x1080-retina.jpg')"
@@ -206,10 +176,17 @@ function main () {
     addPlayer()
     moveAliens()
     dropBombs()
-    // bulletCrush()
-
-    
   }
+
+  // *** Not in Use ***  interval manager
+  // function alienIntervalManager (flag, animate, time) {
+  //   if (flag) {
+  //     moveAliensId = setInterval(animate, time)
+  //   } else {
+  //     clearInterval(moveAliensId)
+  //   }
+  // }
+  // *** Not in Use ***
 
 
   // *** SHOOTING ***  ----------------------------------------------------------------------------------------------------
@@ -226,7 +203,7 @@ function main () {
       if (!playing) {
         clearInterval(bombId)
       }
-      // this cause an erro cause alienArrey doesn't exist anymore once the aliens are all cleared !!!!!!!
+
       cells[dropBomb].classList.remove('bomb')
       dropBomb = dropBomb + gridWidth
 
@@ -254,28 +231,23 @@ function main () {
         if (Number(scoreTag.innerHTML < 0)) {
           scoreTag.innerHTML = 0
         }
-      
 
         if (barWidth < 0) {
           progressBar.style.width = '0%'
           clearInterval(moveAliensId)
           clearInterval(dropBombsId)
-          // clearInterval(bombId)
-          // clearInterval(bulletId)
           lost()
         }
       }
     }, 300)
-
   }
 
 
   function bulletCrush () {
     let bulletPos = player
-    // console.log(bulletPos)
 
     let bulletId = setInterval(() => {
-      // console.log(bullet)
+
       if (!playing) {
         clearInterval(bulletId)
       }
@@ -311,7 +283,6 @@ function main () {
         // clearInterval(bulletId)
         win()
       }
-
       
       // IF bullet hit the bumb, they will both disapear
       // *** Under Construction ***
@@ -326,40 +297,21 @@ function main () {
       // }
       // *** Under Construction ***
       
-    }, 200)
-    
+    }, 200)   
   }
 
-  // *** START GAME *** -----------------------------------------------------------------------------------
-  // once the player hit the start button, 
-  // 3 lines of aliens will start moving to left as a group in EVERY 0.5 SECOND by grid
 
-
-
-  // *** Not in Use ***
-  // function alienIntervalManager (flag, animate, time) {
-  //   if (flag) {
-  //     moveAliensId = setInterval(animate, time)
-  //   } else {
-  //     clearInterval(moveAliensId)
-  //   }
-  // }
-  // *** Not in Use ***
   
-
-  // scoreTag bar, life bar and start button -----------------------------------------------------------------------------------
-  // there will be a scoreTag bar somewhere to show player's scoreTag, it starts from 0
+  // Life Bar ------------------------------------------------------------------------------------------------------
   // there will be a progress bar of 3 lives, once player lost one, it will go backwards
-  // there will be a button for START, when player hits start, aliens will start to move
+
 
   const progressBar = document.querySelector('.progress')
   const fullBlood = 100
   let barWidth = 0
   
   function threeLives () {
-
     const intervalId = setInterval(lifeFrame, 10)
-
     function lifeFrame () {
       if (barWidth >= fullBlood) {
         clearInterval(intervalId)
@@ -367,7 +319,6 @@ function main () {
         barWidth++
         progressBar.style.width = barWidth + '%'
         progressBar.style.backgroundColor = '#43ff43'
-        // console.log(width)
       }
     }
   }
@@ -383,28 +334,17 @@ function main () {
     if (barWidth < 40) {
       progressBar.style.backgroundColor = '#f53e2a'
     }
-    // if (barWidth < 0) {
-    //   loselive = false
-    //   progressBar.style.width = '0%'
-    //   clearInterval(moveAliensId)
-    //   clearInterval(dropBombsId)
-    //   // clearInterval(bombId)
-    //   // clearInterval(bulletId)
-    //   lost()
-    // }
     loselive = false
   }
   
 
 
-  // *** GAME OVER ***  ---------------------------------------------------------------
+  // *** FIN ***  ---------------------------------------------------------------
   // the player will loss one life, and once the player lost 3 lives, GAME OVER (condition 1)
   // IF the bumb doesn't hit the gun, when it gets to the end, it will disapear, and nothing will happen
   // when the front line of the aliens reaches the end of the last grid line, GAME OVER (condition 2)
   // IF there is an alien in the same grid as the gun turret, the gun disapears before showing game over
 
-  
- 
   
   function endOfGame () {
     playing = false
@@ -418,28 +358,21 @@ function main () {
     progressBar.style.visibility = 'hidden'
     scoreTag.style.visibility = 'hidden'
     resetTag.style.visibility = 'visible' 
-    
   }
 
 
-
   function win () {
-    
     endgameScore.innerHTML = `Hoooooray! Your Score is ${scoreTag.innerHTML}`
     endgameScore.style.visibility = 'visible'
     endOfGame()
-    
   }
 
   function lost () {
     endgameScore.innerHTML = `GAME OVER! Your Score is ${scoreTag.innerHTML}`
     endgameScore.style.visibility = 'visible'
     endOfGame()
-    
-
   }
   
-
 
   // *** RESET ***  -----------------------------------------------------------------------------------------------
   // when the game is over, prompt out to confirm if player wants to play again
@@ -450,14 +383,10 @@ function main () {
   // 4.) 3 lines of aliens in place
   // 4.) gun turret in place
 
-  
-
 
   startTag.addEventListener('click', () => {
     // if (moveAliensId) return
     startGame()
-    // grid.style.visibility = 'visible'
-
   })
 
   // pauseTag.addEventListener('click', () => {
@@ -478,3 +407,45 @@ function main () {
 }
 
 window.addEventListener('DOMContentLoaded', main)
+
+
+// let line  = [0, 1, 2, 3, 4, 5]
+
+// line.forEach(num => {
+//   cells[num].classList.add('alien')
+// })
+
+// const goRight = setInterval(right, 500)
+
+// function right () {
+//   if (!line[5] === 9){
+//     line = line.map(x => x + 1)
+//     console.log(line)
+//     line.some(num => {
+//       cells[num].classList.add('alien')
+//     })
+//   }
+//   if (line[5] === 9) {
+//     clearInterval(goRight)
+//   } 
+// }
+
+// setTimeout(() => {
+//   const goLeft = setInterval(left, 1000)
+//   function left () {
+//     line = line.map(x => x - 1)
+//     console.log(line)
+//     line.some(num => {
+//       cells[num].classList.add('alien')
+//     })
+//     if (line[0] === 0) {
+//       clearInterval(goLeft)
+//     }
+//   }
+// }, 2000)
+
+
+// function bounce () {
+//   const goRight = setInterval(right, 500)
+//   const goLeft = setInterval(left, 1000)
+// }

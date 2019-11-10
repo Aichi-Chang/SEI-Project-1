@@ -245,7 +245,7 @@ section {
   text-align: center;
   font-family: 'Press Start 2P', cursive; 
   color: #677967;
-  font-size: 150px;
+  font-size: 120px;
   font-weight: 700;
   letter-spacing: 10px;
   animation: blinking 1.5s infinite linear;
@@ -254,7 +254,7 @@ section {
 
 .rules {
   color: greenyellow;
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
   line-height: 1;
   position: absolute;
