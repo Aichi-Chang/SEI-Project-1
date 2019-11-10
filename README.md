@@ -27,9 +27,7 @@ First personal project developed while studying at General Assembly.
 
 * Once the player has destroyed a wave of aliens, the game starts again. The aim is to achieve the highest score possible before either being destroyed by the aliens, or allowing them to reach the planet's surface.
 
-[Have a go now](https://sei44-project-1-xxxc.netlify.com)
-
-:space_invader:
+[Have a go now :space_invader: :space_invader: :space_invader:](https://sei44-project-1-xxxc.netlify.com)
 
 ## Game setting
 
