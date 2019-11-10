@@ -110,8 +110,8 @@ alienIntervalManageer(false)
 
 * Audio sounds
 
-* When the bullet and the bomb are in the same grid, they will be able to both disapear.
+* When the bullet and the bomb are in the same grid, they will be able to both disapear. (using JS class to track all bullets and bombs movement, each of them will be unique and can be removed when needed)
 
-* More waves of aliens. The game will never ends, and the player will only be defeated while got git three times or the aliens reach the player's grid level.
+* More waves of aliens. The game will never ends, and the player will only be defeated while got git three times or the aliens reach the player's grid level. (hard coded the original alien array, and let the new alien array be editable, in every 10 secs, a NEW original alien array will be generated)
 
-* Score board for different players using localStorage.
+* Score board for different players. (using localStorage) 
