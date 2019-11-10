@@ -41,6 +41,43 @@ First personal project developed while studying at General Assembly.
 
 * The biggest challange of this game that I've come across is to make the aliens to move. I have tried to only remove one specific alien from both end of the line each time when the line moves. I used setInterval to remove the first 3 ones from the left and use setTimeout to control a setInterval to remove another 3 from the right. It did move for 5 secs but then the delayed timer just doesn't work out for a longer period of time. But it was fun, think we might be able to make some delay music app by using this method.
 
+```javascript
+let line  = [0, 1, 2, 3, 4, 5]
+
+line.forEach(num => {
+  cells[num].classList.add('alien')
+})
+
+const goRight = setInterval(right, 500)
+
+function right () {
+  if (!line[5] === 9){
+    line = line.map(x => x + 1)
+    console.log(line)
+    line.some(num => {
+      cells[num].classList.add('alien')
+    })
+  }
+  if (line[5] === 9) {
+    clearInterval(goRight)
+  } 
+}
+
+setTimeout(() => {
+  const goLeft = setInterval(left, 1000)
+  function left () {
+    line = line.map(x => x - 1)
+    console.log(line)
+    line.some(num => {
+      cells[num].classList.add('alien')
+    })
+    if (line[0] === 0) {
+      clearInterval(goLeft)
+    }
+  }
+}, 2000)
+```
+
 * Second of all, it was a big challange for me as well to stop my bullet and bomb setIntervals while developing this game. I tried out several different ways to clear it. Some of them works (like creating a function called intervalManager and use boolean to control your setIntervals) but doesn't fit for the purpose at the end. I have achived these as a reference for later.
 
 ## Wins
