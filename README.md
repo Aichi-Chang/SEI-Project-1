@@ -80,6 +80,20 @@ setTimeout(() => {
 
 * Second of all, it was a big challange for me as well to stop my bullet and bomb setIntervals while developing this game. I tried out several different ways to clear it. Some of them works (like creating a function called intervalManager and use boolean to control your setIntervals) but doesn't fit for the purpose at the end. I have achived these as a reference for later.
 
+```javascript
+function alienIntervalManager (flag, animate, time) {
+    if (flag) {
+      moveAliensId = setInterval(animate, time)
+    } else {
+      clearInterval(moveAliensId)
+    }
+  }
+  
+alienIntervalManager(true, alienmove, 500)
+// or
+alienIntervalManageer(false)
+```
+
 ## Wins
 
 * Pseudo code
