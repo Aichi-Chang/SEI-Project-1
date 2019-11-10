@@ -27,6 +27,10 @@ First personal project developed while studying at General Assembly.
 
 * Once the player has destroyed a wave of aliens, the game starts again. The aim is to achieve the highest score possible before either being destroyed by the aliens, or allowing them to reach the planet's surface.
 
+[Have a go now](https://sei44-project-1-xxxc.netlify.com)
+
+:space_invader:
+
 ## Game setting
 
 * The game is based on 20 * 20 grids, I created the divs using for loop, and push them to an empty array. We also want to append these divs to our HTML so we have access to them while setting other objects up.
@@ -36,6 +40,14 @@ First personal project developed while studying at General Assembly.
 * I used setInterval function for the bombs that aliens is droping. SetInterval is also used to control the bullet and bombs's moving track. 
 
 * Usually the player would have 3 lives, and he will lose one once got hit by the bomb. I use a progress bar to display the player's life, made it has a small touch of the 80s street fighter.
+
+![Start Game](readme/startgame.png)
+
+![Shooting](readme/shooting.png)
+
+![End Game](readme/winning.png)
+
+
 
 ## Challanges
 
@@ -108,10 +120,10 @@ alienIntervalManageer(false)
 
 ## Future Features
 
-* Audio sounds
+- Audio sounds
 
-* When the bullet and the bomb are in the same grid, they will be able to both disapear. (using JS class to track all bullets and bombs movement, each of them will be unique and can be removed when needed)
+- When the bullet and the bomb are in the same grid, they will be able to both disapear. (using JS class to track all bullets and bombs movement, each of them will be unique and can be removed when needed)
 
-* More waves of aliens. The game will never ends, and the player will only be defeated while got git three times or the aliens reach the player's grid level. (hard coded the original alien array, and let the new alien array be editable, in every 10 secs, a NEW original alien array will be generated)
+- More waves of aliens. The game will never ends, and the player will only be defeated while got git three times or the aliens reach the player's grid level. (hard coded the original alien array, and let the new alien array be editable, in every 10 secs, a NEW original alien array will be generated)
 
-* Score board for different players. (using localStorage) 
+- Score board for different players. (using localStorage) 
